@@ -3,8 +3,10 @@ import React, { Component } from "react";
 class AppHeader extends Component {
   render() {
     return (
+
       <div className="app-header">
-          NY TIMES TOP NEWS
+          NY Times Top News Stories
+
       </div>
     );
   }

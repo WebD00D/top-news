@@ -36,10 +36,16 @@ class App extends Component {
       })
       .then(
         function(data) {
-          console.log(data);
+          let limit10 = [];
+          for (var i = 0; i < 10; i++) {
+            limit10.push(data.results[i]);
+          }
+
           this.setState({
-            articlesMasterSet: data.results,
-            articlesFilteredSet: data.results,
+            articlesMasterSet: _.reverse(_.sortBy(limit10, ["published_date"])),
+            articlesFilteredSet: _.reverse(
+              _.sortBy(limit10, ["published_date"])
+            ),
             section
           });
         }.bind(this)
@@ -58,7 +64,7 @@ class App extends Component {
       return title.indexOf(filterValue.toUpperCase().trim()) > -1;
     });
 
-    let orderedList = _.sortBy(filtered, ["published_date"]);
+    let orderedList = _.reverse(_.sortBy(filtered, ["published_date"]));
 
     this.setState({
       articlesFilteredSet: orderedList
@@ -70,16 +76,20 @@ class App extends Component {
       return <Result key={key} data={this.state.articlesFilteredSet[key]} />;
     });
 
+    let resultCount = this.state.articlesFilteredSet.length;
+
     return (
       <div className="app">
+        <div>
         <AppHeader />
-        {this.state.section}
         <ArticleFilter
           changeSection={section => this._handleSectionChange(section)}
           filterTitle={filter => this._handleFiltering(filter)}
           filterRef={el => (this.filterElement = el)}
         />
+        <div className="result-count">Results: {resultCount} / 10</div>
         <div className="app-results">{results}</div>
+        </div>
       </div>
     );
   }

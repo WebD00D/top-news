@@ -7,12 +7,13 @@ class Result extends Component {
 
     return (
       <div className="result">
-  
+
         <div className="result__meta">
-          <div>{data.title}</div>
-          <div>{data.abstract}</div>
-          <div>{data.published_date}</div>
-          <a target="_blank" href={data.url}>Read the Full Article</a>
+          <div className="result__title"><b>{data.title}</b></div>
+            <div className="result__date">Published on {data.published_date}</div>
+
+          <div className="result__abstract">{data.abstract}</div>
+          <a className="result__link" target="_blank" href={data.url}>Read full article</a>
         </div>
       </div>
     );
