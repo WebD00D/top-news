@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import _ from "lodash";
 
 import AppHeader from "./components/AppHeader";
@@ -17,11 +16,12 @@ class App extends Component {
     this.state = {
       articlesMasterSet: [],
       articlesFilteredSet: [],
-      section: "home"
+      section: "home" // default
     };
   }
 
   componentDidMount() {
+    // load initial NY Times data
     this._handleDataFetch(this.state.section);
   }
 
@@ -40,7 +40,6 @@ class App extends Component {
           for (var i = 0; i < 10; i++) {
             limit10.push(data.results[i]);
           }
-
           this.setState({
             articlesMasterSet: _.reverse(_.sortBy(limit10, ["published_date"])),
             articlesFilteredSet: _.reverse(
@@ -59,7 +58,7 @@ class App extends Component {
 
   _handleFiltering(filterValue) {
     let articles = [...this.state.articlesMasterSet];
-    let filtered = _.filter(articles, function(item) {
+    let filtered = _.filter(articles, item => {
       let title = item.title.toUpperCase();
       return title.indexOf(filterValue.toUpperCase().trim()) > -1;
     });
@@ -72,15 +71,14 @@ class App extends Component {
   }
 
   render() {
-    let results = Object.keys(this.state.articlesFilteredSet).map(key => {
+    const results = Object.keys(this.state.articlesFilteredSet).map(key => {
       return <Result key={key} data={this.state.articlesFilteredSet[key]} />;
     });
 
-    let resultCount = this.state.articlesFilteredSet.length;
+    const resultCount = this.state.articlesFilteredSet.length;
 
     return (
       <div className="app">
-        <div>
         <AppHeader />
         <ArticleFilter
           changeSection={section => this._handleSectionChange(section)}
@@ -89,7 +87,6 @@ class App extends Component {
         />
         <div className="result-count">Results: {resultCount} / 10</div>
         <div className="app-results">{results}</div>
-        </div>
       </div>
     );
   }

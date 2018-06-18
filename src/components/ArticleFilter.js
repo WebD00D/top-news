@@ -4,6 +4,7 @@ class SectionSelector extends Component {
   render() {
     return (
       <div className="app-filter">
+        <label>NY Times Section</label>
         <select onChange={e => this.props.changeSection(e.target.value)}>
           <option>Home</option>
           <option>Opinion</option>
@@ -32,12 +33,12 @@ class SectionSelector extends Component {
           <option>Obituaries</option>
           <option>Insider</option>
         </select>
-
+        <label>Filter By Title</label>
         <input
           onChange={e => this.props.filterTitle(e.target.value)}
           type="text"
           ref={this.props.filterRef}
-          placeholder="Search by article title"
+          placeholder="i.e World Cup"
         />
       </div>
     );
