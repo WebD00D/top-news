@@ -1,0 +1,44 @@
+.app {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.app-header {
+  margin-bottom: 22px;
+  font-size: 32px;
+  font-weight: 900;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.app-filter {
+  margin-bottom: 22px;
+}
+
+.app-results {
+
+}
+
+.result {
+  width: 100%;
+  min-height: 175px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.result__img {
+  margin-right: 12px;
+}
+
+.result__meta {
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+}
